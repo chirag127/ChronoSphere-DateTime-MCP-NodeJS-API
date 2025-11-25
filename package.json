@@ -24,7 +24,7 @@
   "type": "module",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.2",
-    "luxon": "^3.4.4",
+    "luxon": "^3.7.2",
     "zod": "^3.24.4"
   },
   "devDependencies": {
