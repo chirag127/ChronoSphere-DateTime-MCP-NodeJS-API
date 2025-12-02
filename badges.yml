@@ -1,0 +1,27 @@
+build:
+  services:
+    - github-actions
+
+image::
+  remote:
+    url: "https://raw.githubusercontent.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/main/assets/logo.png"
+
+badges:
+  - name: "Build Status"
+    image: "https://img.shields.io/github/actions/workflow/status/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/ci.yml?style=flat-square"
+    url: "https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/actions/workflows/ci.yml"
+  - name: "Code Coverage"
+    image: "https://codecov.io/gh/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/branch/main/graphs/badge.svg?token=YOUR_CODECOV_TOKEN"
+    url: "https://codecov.io/gh/chirag127/ChronoSphere-AI-Date-Time-MCP-Service"
+  - name: "Tech Stack - TypeScript"
+    image: "https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white"
+    url: "https://www.typescriptlang.org/"
+  - name: "Tech Stack - NodeJS"
+    image: "https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white"
+    url: "https://nodejs.org/"
+  - name: "License: CC BY-NC 4.0"
+    image: "https://img.shields.io/badge/License-CC BY-NC 4.0-blue?style=flat-square"
+    url: "https://creativecommons.org/licenses/by-nc/4.0/"
+  - name: "GitHub Stars"
+    image: "https://img.shields.io/github/stars/chirag127/ChronoSphere-AI-Date-Time-MCP-Service?style=flat-square"
+    url: "https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/"
