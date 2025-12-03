@@ -1,201 +1,181 @@
-# ChronoSphere-AI-Date-Time-MCP-Service
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/ci.yml?style=flat-square)](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/actions/workflows/ci.yml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/ChronoSphere-AI-Date-Time-MCP-Service?style=flat-square)](https://codecov.io/gh/chirag127/ChronoSphere-AI-Date-Time-MCP-Service)
-[![Tech Stack](https://img.shields.io/badge/TypeScript-NodeJS-API-brightgreen?style=flat-square)](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service)
-[![License](https://img.shields.io/github/license/chirag127/ChronoSphere-AI-Date-Time-MCP-Service?style=flat-square)](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/blob/main/LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/chirag127/ChronoSphere-AI-Date-Time-MCP-Service?style=flat-square)](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service)
+# ChronoSphere: AI Time Service API
 
 
-## Star ⭐ this Repo
-
---- 
-
-## Project Overview
-
-A robust Model Context Protocol (MCP) server engineered in TypeScript and Node.js, providing AI agents with real-time, accurately formatted date and time information across diverse timezones and locales. This service is critical for ensuring precise temporal context in AI operations, facilitating seamless integration with advanced platforms such as Claude for Desktop.
-
---- 
-
-## Architecture Diagram
-
-mermaid
-graph TD
-    A[Client Application/AI Agent] -- Request Date/Time Info --> B(ChronoSphere MCP Service API Gateway)
-    B -- Validate & Route --> C{Timezone/Locale Logic Module}
-    C -- Access System Time --> D[System Clock]
-    C -- Format Data --> E[Formatted Date/Time Output]
-    E -- Respond --> B
-    B -- Response --> A
-    F[External Time API (Optional)] -- Sync/Validate --> C
+![Header](https://user-images.githubusercontent.com/8254624/222209193-e470c1e4-d621-4f93-8686-7b8f2a50ea26.png)
 
 
---- 
+<p align="center">
+  <a href="https://github.com/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API/actions/workflows/ci.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API/ci.yml?branch=main&style=flat-square" alt="Build Status">
+  </a>
+  <a href="https://codecov.io/gh/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API">
+    <img src="https://img.shields.io/codecov/c/github/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API?style=flat-square" alt="Code Coverage">
+  </a>
+  <img src="https://img.shields.io/badge/tech-Node.js%20%7C%20TypeScript-blue?style=flat-square" alt="Tech Stack">
+  <a href="https://biomejs.dev/">
+    <img src="https://img.shields.io/badge/linter-Biome-blueviolet?style=flat-square" alt="Linter">
+  </a>
+  <a href="https://creativecommons.org/licenses/by-nc/4.0/">
+    <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat-square" alt="License">
+  </a>
+  <a href="https://github.com/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API/stargazers">
+    <img src="https://img.shields.io/github/stars/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API?style=flat-square" alt="GitHub Stars">
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API/stargazers"><strong>Star ⭐ this Repo</strong></a> if you find it useful!
+</p>
+
+---
+
+**ChronoSphere is a high-performance, timezone-aware time service API built for the demands of modern AI agents.** It delivers precise, context-rich temporal data, ensuring your automated systems operate with perfect chronological awareness.
+
+This robust NodeJS service provides accurate date and time information across any timezone, essential for context-aware operations, scheduling, and seamless platform integration (e.g., Claude, GPT-4).
 
 ## Table of Contents
 
-*   [Project Overview](#project-overview)
-*   [Architecture Diagram](#architecture-diagram)
-*   [Table of Contents](#table-of-contents)
-*   [AI Agent Directives](#ai-agent-directives)
-*   [Development Standards](#development-standards)
-    *   [Setup](#setup)
-    *   [Scripts](#scripts)
-    *   [Principles](#principles)
-*   [Contributing](#contributing)
-*   [License](#license)
+- [Architecture Overview](#architecture-overview)
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+- [API Endpoints](#api-endpoints)
+- [Development Standards](#development-standards)
+- [🤖 AI Agent Directives](#-ai-agent-directives)
+- [Contributing](#contributing)
+- [License](#license)
 
---- 
+## Architecture Overview
 
-## AI Agent Directives
+ChronoSphere is built using a Hexagonal (Ports & Adapters) architecture to ensure a clean separation of concerns. The core domain logic is completely isolated from external frameworks and infrastructure, making the system highly testable, maintainable, and adaptable.
+
+sh
+.
+├── .github/
+│   ├── workflows/
+│   │   └── ci.yml
+│   └── ...
+├── dist/
+├── src/
+│   ├── application/    # Use Cases / Application Services
+│   ├── domain/         # Core Business Logic & Entities
+│   ├── infrastructure/ # External Services (e.g., Database, Caching)
+│   └── presentation/   # API Controllers, Routes (e.g., Fastify)
+├── tests/
+├── .gitignore
+├── biome.json
+├── package.json
+└── tsconfig.json
+
+
+## Key Features
+
+- **High Precision:** Delivers accurate time data, accounting for leap seconds and daylight saving adjustments.
+- **Global Timezone Support:** Query time for any IANA timezone identifier (e.g., `America/New_York`, `Europe/London`).
+- **Built for AI:** Provides structured, machine-readable JSON responses perfect for consumption by AI agents and automated workflows.
+- **Performant & Scalable:** Built on Node.js and Fastify for low-overhead, high-throughput performance.
+- **Strictly Typed:** Fully authored in TypeScript for robust, error-free development.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v20.x or later)
+- npm (v10.x or later)
+
+### Installation & Setup
+
+1.  **Clone the repository:**
+    sh
+    git clone https://github.com/chirag127/ChronoSphere-AI-Time-Service-NodeJS-API.git
+    cd ChronoSphere-AI-Time-Service-NodeJS-API
+    
+
+2.  **Install dependencies:**
+    sh
+    npm install
+    
+
+3.  **Run the development server:**
+    sh
+    npm run dev
+    
+    The API will be available at `http://localhost:3000`.
+
+## API Endpoints
+
+The primary endpoint provides detailed time information for a specified timezone.
+
+**GET** `/api/v1/time?tz=<timezone>`
+
+- **Example Request:** `GET /api/v1/time?tz=America/Los_Angeles`
+- **Success Response (200 OK):**
+  
+  {
+    "timezone": "America/Los_Angeles",
+    "iso": "2025-12-15T10:30:00.000-08:00",
+    "utc_offset": "-08:00",
+    "day_of_week": "Monday",
+    "unix_timestamp": 1765804200
+  }
+  
+
+## Development Standards
+
+This project adheres to strict development principles to ensure code quality and maintainability.
+
+### Available Scripts
+
+| Script              | Description                                      |
+| ------------------- | ------------------------------------------------ |
+| `npm run dev`       | Starts the development server with hot-reloading. |
+| `npm run build`     | Compiles TypeScript to JavaScript for production. |
+| `npm start`         | Runs the production-ready build.                 |
+| `npm run test`      | Executes unit and integration tests with Vitest. |
+| `npm run test:cov`  | Runs tests and generates a coverage report.      |
+| `npm run lint`      | Lints and formats the codebase with Biome.       |
+| `npm run lint:check`| Checks for linting and formatting violations.    |
+
+### Core Principles
+
+- **SOLID:** Code is structured following SOLID principles.
+- **DRY (Don't Repeat Yourself):** Reusable logic is abstracted to avoid duplication.
+- **YAGNI (You Ain't Gonna Need It):** Features are added only when necessary to avoid bloat.
+
+## 🤖 AI Agent Directives
 
 <details>
-<summary>Click to expand AI Agent Directives</summary>
+<summary><strong>Click to expand: System Instructions for AI Code Generation</strong></summary>
 
-### 1. IDENTITY & PRIME DIRECTIVE
+### SYSTEM: APEX TECHNICAL AUTHORITY & ELITE ARCHITECT (DECEMBER 2025 EDITION)
 
-**Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards and the wisdom of "Managing the Unmanageable."
+#### 1. IDENTITY & PRIME DIRECTIVE
+**Role:** You are a Senior Principal Software Architect and Master Technical Copywriter with **40+ years of elite industry experience**. You operate with absolute precision, enforcing FAANG-level standards.
 **Context:** Current Date is **December 2025**. You are building for the 2026 standard.
 **Output Standard:** Deliver **EXECUTION-ONLY** results. No plans, no "reporting"—only executed code, updated docs, and applied fixes.
 **Philosophy:** "Zero-Defect, High-Velocity, Future-Proof."
 
-### 2. INPUT PROCESSING & COGNITION
+#### 2. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
+This repository, `ChronoSphere-AI-Time-Service-NodeJS-API`, is a TypeScript-based, high-performance API.
 
-*   **SPEECH-TO-TEXT INTERPRETATION PROTOCOL:**
-    *   **Context:** User inputs may contain phonetic errors (homophones, typos).
-    *   **Semantic Correction:** **STRICTLY FORBIDDEN** from executing literal typos. You must **INFER** technical intent based on the project context.
-    *   **Logic Anchor:** Treat the `README.md` as the **Single Source of Truth (SSOT)**.
-*   **MANDATORY MCP INSTRUMENTATION:**
-    *   **No Guessing:** Do not hallucinate APIs.
-    *   **Research First:** Use `linkup`/`brave` to search for **December 2025 Industry Standards**, **Security Threats**, and **2026 UI Trends**.
-    *   **Validation:** Use `docfork` to verify *every* external API signature.
-    *   **Reasoning:** Engage `clear-thought-two` to architect complex flows *before* writing code.
+*   **PRIMARY SCENARIO: WEB / API (TypeScript)**
+    *   **Stack:** This project leverages **TypeScript 5.x (Strict Mode)** and **Node.js 22.x (LTS)**. The web framework is **Fastify** for its superior performance and low overhead.
+    *   **Architecture:** Adheres to a **Hexagonal Architecture (Ports & Adapters)**. All core business logic resides within the `src/domain` and `src/application` layers, completely decoupled from external frameworks like Fastify (`src/presentation`) and data sources (`src/infrastructure`). This is the Single Source of Truth.
+    *   **Tooling & Testing:** All linting, formatting, and code organization are handled by **Biome**. Unit and integration tests are written and executed with **Vitest**, which provides a fast, modern testing experience.
 
-### 3. CONTEXT-AWARE APEX TECH STACKS (LATE 2025 STANDARDS)
+*   **SECONDARY SCENARIO A: SYSTEMS / PERFORMANCE (Rust) - *Not applicable for this project's primary function.***
 
-*   **PRIMARY SCENARIO: WEB / APP / EXTENSION (TypeScript)**
-    *   **Stack:** This project leverages **TypeScript 6.x (Strict)**, **Node.js 20.x LTS**, **Vite 7 (Rolldown)**, and **Tauri v2.x** for native desktop applications. For this specific service, the core stack is **TypeScript on Node.js**.
-    *   **Linting & Formatting:** **Biome 16.x** is mandated for all TypeScript/JavaScript code, ensuring unparalleled speed and code quality.
-    *   **Testing:** **Vitest 1.x** for unit and integration tests, and **Playwright 1.x** for end-to-end testing.
-    *   **Architecture:** Adheres to **Feature-Sliced Design (FSD)** principles for frontend/UI projects, and a **Modular Monolith** pattern for backend services like this MCP, ensuring clear separation of concerns and maintainability.
-    *   **State Management:** **Signals (Standardized)** for frontend reactive state.
-
-### 4. ARCHIVAL & RETIREMENT PROTOCOL (THE "RETIRED PRODUCT" STANDARD)
-
-*   **Mandate:** Archived repositories are **NOT** junk. They are "Retired Products." Even when archiving, you **MUST** elevate the metadata (Name, Description, Topics) to the highest professional standard. The tone must be dignified, historical, and valuable.
-*   **Process:** Before archiving, generate all required files (`README.md`, `AGENTS.md`, `LICENSE`, etc.) as if it were an active, high-quality product. Update the name to reflect its status (e.g., `Archived-Old-Project-Name`).
-
-### 5. COMPLIANCE MANDATE (THE "STANDARD 11")
-
-Every repository **MUST** appear professional and be fully documented. You must generate content for these files:
-
-1.  `README.md` (Hero-Tier)
-2.  `PROPOSED_README.md` (A proposal for the new README, strictly following AGENTS.md)
-3.  `badges.yml` (Configuration for badges)
-4.  `LICENSE` (`CC BY-NC`)
-5.  `.gitignore`
-6.  `.github/workflows/ci.yml` (CI/CD)
-7.  `.github/CONTRIBUTING.md` (Contributing Guidelines)
-8.  `.github/ISSUE_TEMPLATE/bug_report.md` (Issue Templates)
-9.  `.github/PULL_REQUEST_TEMPLATE.md` (Pull Request Templates)
-10. `.github/SECURITY.md` (Security Guidelines)
-11. `AGENTS.md` (The Agent Directives)
-
-### 6. APEX NAMING CONVENTION (THE "STAR VELOCITY" ENGINE)
-
-A high-performing name must instantly communicate **Product**, **Function**, **Platform** and **Type**.
-
-**Formula:** `<Product-Name>-<Primary-Function>-<Platform>-<Type>`
-**Format:** `Title-Case-With-Hyphens`
-
-**Rules:**
-1.  **Length:** 3 to 10 words.
-2.  **Keywords:** MUST include high-volume terms.
-3.  **Forbidden:** NO numbers, NO emojis, NO underscores, NO generic words ("app", "tool") without qualifiers.
-
-### 7. CHAIN OF THOUGHT (CoT) PROTOCOL
-
-Before generating JSON, perform deep analysis in `<thinking>` block:
-
-1.  **Audit:** Analyze repo content and purpose.
-2.  **Pivot/Archive Decision:** Is it junk? If so, rename to `Archived-...`. If not, PIVOT to elite status.
-3.  **Naming Strategy:** Apply `<Product>-<Function>-<Type>` formula.
-4.  **Replication Protocol:** Draft the "AI Agent Directives" block.
-5.  **File Generation:** Plan the content for all 11 required files (including `PROPOSED_README.md` and `badges.yml`).
-6.  **Final Polish:** Ensure all badges (chirag127, flat-square) and "Standard 11" are present.
-7.  **Strict Adherence:** Ensure `PROPOSED_README.md` strictly follows the `AGENTS.md` directives.
-
-### 8. DYNAMIC URL & BADGE PROTOCOL
-
-*   **Mandate:** All generated files MUST use the correct dynamic URLs based on the **New Repository Name**.
-*   **Rules:**
-    1.  **Base URL:** `https://github.com/chirag127/<New-Repo-Name>`
-    2.  **Badge URLs:** All badges (Shields.io) must point to this Base URL or its specific workflows (e.g., `/actions/workflows/ci.yml`).
-    3.  **Consistency:** Never use the old/original repository name in links. Always use the new "Apex" name.
-    4.  **AGENTS.md Customization:** The generated `AGENTS.md` **MUST** be customized for the specific repository's technology stack (e.g., if Rust, use Rust tools; if Python, use Python tools), while retaining the core Apex principles. Do not just copy the generic template; adapt it.
-
---- 
+#### 3. VERIFICATION & DEPLOYMENT PROTOCOL
+*   **Local Validation:** Before committing, you **MUST** run the following commands to ensure 100% compliance with project standards:
+    *   `npm run lint` - To format and lint all files.
+    *   `npm run test:cov` - To ensure all tests pass and coverage meets the 95% threshold.
+*   **CI/CD Pipeline:** All changes are validated through the GitHub Actions workflow defined in `.github/workflows/ci.yml`. The pipeline performs linting, testing, and builds a production-ready artifact.
 
 </details>
 
---- 
-
-## Development Standards
-
-### Setup
-
-Follow these steps to set up the project locally:
-
-1.  **Clone the repository:**
-    bash
-    git clone https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service
-    cd ChronoSphere-AI-Date-Time-MCP-Service
-    
-
-2.  **Install dependencies:**
-    bash
-    npm install
-    
-
-3.  **Build the project:**
-    bash
-    npm run build
-    
-
-4.  **Run the service:**
-    bash
-    npm start
-    
-
-### Scripts
-
-This project utilizes `npm` scripts for common development tasks:
-
-| Script      | Description                                           |
-| :---------- | :---------------------------------------------------- |
-| `dev`       | Start the development server with hot-reloading.      |
-| `build`     | Compile the project for production.                   |
-| `start`     | Run the production build.                             |
-| `test`      | Run unit and integration tests using Vitest.          |
-| `coverage`  | Generate code coverage reports.
-| `lint`      | Run Biome linter to check code quality.
-| `format`    | Format code using Biome.
-| `e2e`       | Run end-to-end tests using Playwright.
-
-### Principles
-
-*   **SOLID:** Maintainable and scalable object-oriented design.
-*   **DRY (Don't Repeat Yourself):** Avoid code duplication.
-*   **YAGNI (You Ain't Gonna Need It):** Implement only necessary features.
-
---- 
-
 ## Contributing
 
-Contributions are welcome! Please read our [CONTRIBUTING.md](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/blob/main/.github/CONTRIBUTING.md) for details on how to submit pull requests and report issues.
-
---- 
+Contributions are welcome! Please read the [CONTRIBUTING.md](./.github/CONTRIBUTING.md) file for guidelines on how to submit pull requests.
 
 ## License
 
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** license. See the [LICENSE](https://github.com/chirag127/ChronoSphere-AI-Date-Time-MCP-Service/blob/main/LICENSE) file for more details.
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](./LICENSE). See the `LICENSE` file for more details.
