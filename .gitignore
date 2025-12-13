@@ -1,45 +1,34 @@
-# Node.js
+# Apex Technical Authority .gitignore for ChronoSphere-AI-Date-Time-MCP-NodeJS-API
+
+# Node.js and TypeScript
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.npm/
+coverage/
+typeout/
+.tsbuildinfo
 
-# TypeScript
-*.tsbuildinfo
-dist/
-build/
-
-# Environment
-.env
-.env.local
-.env.*.local
-
-# Logs
-log/
-*.log
-
-# OS
-.DS_Store
-
-# IDEs and Editors
+# IDE and Editor
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
+*.iml
 
-# Testing
-coverage/
-.nyc_output/
+# Operating System
+.DS_Store
+Thumbs.db
 
-# Dependency archives
-*.tgz
-*.zip
+# Miscellaneous
+package-lock.json
+yarn.lock
+yarn-error.log
 
-# Temporary files
-tmp/
-*.tmp
+# Biome and linting
+.biome/
+.ruffcache/
 
-# AWS CloudFormation (if applicable for deployment)
-.aws-sam/
+# Test and build artifacts
+tests/results/
+build/
+dist/
+
+# Env files
+.env
+.env.example
